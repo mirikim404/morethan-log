@@ -28,7 +28,7 @@ async function getPageProperties(
             const newurl = customMapImageUrl(url, Block)
             properties[schema[key].name] = newurl
           } catch (error) {
-            properties[schema[key].name] = undefined
+            properties[schema[key].name] = null
           }
           break
         }
@@ -60,14 +60,14 @@ async function getPageProperties(
             if (rawUsers[i][0][1]) {
               const userId = rawUsers[i][0]
               const res: any = await api.getUsers(userId)
-              const resValue =
-                res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
+              const userEntry = res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
+              const resValue = userEntry?.value ?? userEntry // 8.x 응답 형식 대응
               const user = {
-                id: resValue?.id,
+                id: resValue?.id ?? userId[1] ?? null,
                 name:
                   resValue?.name ||
-                  `${resValue?.family_name}${resValue?.given_name}` ||
-                  undefined,
+                  [resValue?.family_name, resValue?.given_name].filter(Boolean).join("") ||
+                  null,
                 profile_photo: resValue?.profile_photo || null,
               }
               users.push(user)
