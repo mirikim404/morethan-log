@@ -6,14 +6,22 @@ const CONFIG = {
     role: "backend developer",
     bio: "주니어 백엔드 개발자",
     email: "mirikim8989@gmail.com",
-    linkedin: "miri-kim-990733404",
+    linkedin: "mirikim404",
     github: "mirikim404",
     instagram: "",
   },
   projects: [
     {
-      name: `zeropick`,
-      href: "https://github.com/morethanmin/morethan-log",
+      name: `zeropick-backend`,
+      href: "https://github.com/ecc2team/Backend",
+    },
+    {
+      name: `zeropick-data`,
+      href: "https://github.com/ecc2team/Data",
+    },
+    {
+      name: `my-trip-router`,
+      href: "https://github.com/mirikim404/my-trip-router",
     },
   ],
   // blog setting (required)
