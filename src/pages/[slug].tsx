@@ -3,7 +3,7 @@ import { filterPosts } from "src/libs/utils/notion"
 import { CONFIG } from "site.config"
 import { NextPageWithLayout } from "../types"
 import CustomError from "src/routes/Error"
-import { getRecordMap, getPosts } from "src/apis"
+import { getRecordMap, getPosts, expandProjectFeed } from "src/apis"
 import MetaConfig from "src/components/MetaConfig"
 import { GetStaticProps } from "next"
 import { queryClient } from "src/libs/react-query"
@@ -36,7 +36,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const detailPosts = filterPosts(posts, filter)
   const postDetail = detailPosts.find((t: any) => t.slug === slug)
-  const recordMap = await getRecordMap(postDetail?.id!)
+  let recordMap = await getRecordMap(postDetail?.id!)
+  if (postDetail?.type?.[0] === "Page") {
+    try {
+      recordMap = await expandProjectFeed(recordMap)
+    } catch (e) {
+      console.error("expandProjectFeed failed", e)
+    }
+  }
 
   await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({
     ...postDetail,
