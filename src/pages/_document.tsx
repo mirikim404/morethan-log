@@ -7,6 +7,13 @@ class MyDocument extends Document {
       <Html lang={CONFIG.lang}>
         <Head>
           <link rel="icon" href="/favicon.ico" />
+          {/* 이모지를 Windows 기본(Segoe UI Emoji) 대신 노션과 비슷한 컬러 이모지로 표시 */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap"
+          />
           <link
             rel="apple-touch-icon"
             sizes="192x192"

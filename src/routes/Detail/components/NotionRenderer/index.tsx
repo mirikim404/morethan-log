@@ -89,4 +89,36 @@ const StyledWrapper = styled.div`
   .notion-list {
     width: 100%;
   }
+
+  /* 이모지: Windows 기본 이모지 대신 Noto Color Emoji를 먼저 쓴다 (_document.tsx에서 로드) */
+  .notion {
+    --notion-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Helvetica, Arial, "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji",
+      sans-serif;
+  }
+  .notion .notion-page-icon {
+    font-family: "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji",
+      sans-serif;
+  }
+
+  /* 표: 노션처럼 연한 테두리와 헤더 배경 */
+  .notion .notion-simple-table,
+  .notion .notion-simple-table td {
+    border-color: rgba(55, 53, 47, 0.16);
+  }
+  .notion .notion-simple-table td {
+    padding: 7px 9px;
+  }
+  .notion .notion-simple-table-header-row td,
+  .notion .notion-simple-table-header-cell {
+    background: rgb(247, 246, 243);
+  }
+  .notion.dark-mode .notion-simple-table,
+  .notion.dark-mode .notion-simple-table td {
+    border-color: rgba(255, 255, 255, 0.13);
+  }
+  .notion.dark-mode .notion-simple-table-header-row td,
+  .notion.dark-mode .notion-simple-table-header-cell {
+    background: rgba(255, 255, 255, 0.04);
+  }
 `
