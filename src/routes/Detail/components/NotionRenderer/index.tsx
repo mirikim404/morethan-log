@@ -204,13 +204,57 @@ const StyledWrapper = styled.div`
     background: rgba(255, 255, 255, 0.1);
   }
 
+  /* 콜아웃: 노션의 탁한 배경 대신, 인라인 코드·코드블록과 같은 계열의 색으로 */
+  .notion .notion-callout {
+    border: 1px solid rgba(55, 53, 47, 0.12);
+    border-left-width: 3px;
+    border-radius: 8px;
+    padding: 14px 16px 14px 12px;
+  }
+  .notion .notion-callout.notion-gray_background_co {
+    background: rgba(55, 53, 47, 0.04);
+  }
+  .notion .notion-callout.notion-red_background_co {
+    background: rgba(224, 108, 117, 0.08);
+    border-color: rgba(224, 108, 117, 0.25);
+    border-left-color: #e06c75;
+  }
+  .notion .notion-callout.notion-yellow_background_co {
+    background: rgba(209, 154, 102, 0.09);
+    border-color: rgba(209, 154, 102, 0.28);
+    border-left-color: #d19a66;
+  }
+  .notion.dark-mode .notion-callout {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .notion.dark-mode .notion-callout.notion-gray_background_co {
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .notion.dark-mode .notion-callout.notion-red_background_co {
+    background: rgba(255, 123, 114, 0.07);
+    border-color: rgba(255, 123, 114, 0.22);
+    border-left-color: #ff7b72;
+  }
+  .notion.dark-mode .notion-callout.notion-yellow_background_co {
+    background: rgba(229, 192, 123, 0.07);
+    border-color: rgba(229, 192, 123, 0.22);
+    border-left-color: #e5c07b;
+  }
+
   /* 표: 노션처럼 연한 테두리와 헤더 배경 */
   .notion .notion-simple-table,
   .notion .notion-simple-table td {
     border-color: rgba(55, 53, 47, 0.16);
   }
+  .notion .notion-simple-table {
+    font-size: 13px;
+    line-height: 1.5;
+  }
   .notion .notion-simple-table td {
-    padding: 7px 9px;
+    padding: 5px 8px;
+  }
+  .notion .notion-simple-table-header-row td {
+    font-weight: 600;
   }
   .notion .notion-simple-table-header-row td,
   .notion .notion-simple-table-header-cell {
