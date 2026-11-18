@@ -15,6 +15,7 @@ import "prismjs/themes/prism-tomorrow.css"
 import "katex/dist/katex.min.css"
 import { FC } from "react"
 import styled from "@emotion/styled"
+import InteractiveCheckbox from "./InteractiveCheckbox"
 
 const _NotionRenderer = dynamic(
   () => import("react-notion-x").then((m) => m.NotionRenderer),
@@ -73,6 +74,7 @@ const NotionRenderer: FC<Props> = ({ recordMap }) => {
         recordMap={recordMap}
         components={{
           Code,
+          Checkbox: InteractiveCheckbox,
           Collection,
           Equation,
           Modal,
@@ -188,6 +190,34 @@ const StyledWrapper = styled.div`
     color: #abb2bf;
     background: rgba(255, 255, 255, 0.08);
   }
+  .notion .notion-code-copy-button:hover,
+  .notion .notion-code-copy-button:active {
+    background: rgba(255, 255, 255, 0.16);
+  }
+  /* "Copied" 툴팁: 기본은 버튼 아래(코드블록 밖)에 떠서 스크롤바가 생기므로 버튼 왼쪽에 띄운다 */
+  .notion .notion-code-copy-tooltip {
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    right: calc(100% + 8px);
+    width: auto;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  /* 체크박스: 클릭 가능 표시, 취소선은 현재 체크 상태를 따라가게 */
+  .notion .notion-interactive-checkbox {
+    cursor: pointer;
+  }
+  .notion .notion-to-do-body.notion-to-do-checked {
+    text-decoration: none;
+    opacity: 1;
+  }
+  .notion .notion-to-do-item:has(.notion-property-checkbox-checked) .notion-to-do-body {
+    text-decoration: line-through;
+    opacity: 0.55;
+  }
 
   /* 인라인 코드: 배경과 색을 진하게 해서 눈에 띄게 */
   .notion .notion-inline-code {
@@ -220,9 +250,9 @@ const StyledWrapper = styled.div`
     border-left-color: #e06c75;
   }
   .notion .notion-callout.notion-yellow_background_co {
-    background: rgba(209, 154, 102, 0.09);
-    border-color: rgba(209, 154, 102, 0.28);
-    border-left-color: #d19a66;
+    background: rgba(202, 138, 4, 0.08);
+    border-color: rgba(202, 138, 4, 0.28);
+    border-left-color: #ca8a04;
   }
   .notion.dark-mode .notion-callout {
     border-color: rgba(255, 255, 255, 0.1);
@@ -236,9 +266,42 @@ const StyledWrapper = styled.div`
     border-left-color: #ff7b72;
   }
   .notion.dark-mode .notion-callout.notion-yellow_background_co {
-    background: rgba(229, 192, 123, 0.07);
-    border-color: rgba(229, 192, 123, 0.22);
-    border-left-color: #e5c07b;
+    background: rgba(250, 204, 21, 0.06);
+    border-color: rgba(250, 204, 21, 0.2);
+    border-left-color: #facc15;
+  }
+  /* 콜아웃 이모지는 블로그에서 숨기고, 색에 맞는 라벨을 붙인다 (빨강=핵심, 노랑=참고) */
+  .notion .notion-callout > .notion-page-icon-inline,
+  .notion .notion-callout > .notion-page-icon {
+    display: none;
+  }
+  .notion .notion-callout {
+    padding-left: 16px;
+  }
+  .notion .notion-callout .notion-callout-text {
+    margin-left: 0;
+  }
+  .notion .notion-callout.notion-red_background_co .notion-callout-text::before,
+  .notion .notion-callout.notion-yellow_background_co .notion-callout-text::before {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .notion .notion-callout.notion-red_background_co .notion-callout-text::before {
+    content: "핵심";
+    color: #e06c75;
+  }
+  .notion .notion-callout.notion-yellow_background_co .notion-callout-text::before {
+    content: "참고";
+    color: #ca8a04;
+  }
+  .notion.dark-mode .notion-callout.notion-red_background_co .notion-callout-text::before {
+    color: #ff7b72;
+  }
+  .notion.dark-mode .notion-callout.notion-yellow_background_co .notion-callout-text::before {
+    color: #facc15;
   }
 
   /* 표: 노션처럼 연한 테두리와 헤더 배경 */
