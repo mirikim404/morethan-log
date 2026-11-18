@@ -23,26 +23,14 @@ const _NotionRenderer = dynamic(
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(async (m) => {
-    // prism 기본 언어(js, ts, css, html, json 등) 외에 블로그에서 쓰는 언어를 등록한다
+    // 대부분의 언어는 RootLayout에서 등록한다. 거기 없는 언어만 여기서 추가로 등록한다
     await Promise.allSettled([
-      import("prismjs/components/prism-bash.js"),
-      import("prismjs/components/prism-java.js"),
-      import("prismjs/components/prism-kotlin.js"),
-      import("prismjs/components/prism-python.js"),
-      import("prismjs/components/prism-sql.js"),
-      import("prismjs/components/prism-yaml.js"),
       import("prismjs/components/prism-hcl.js"),
-      import("prismjs/components/prism-docker.js"),
-      import("prismjs/components/prism-go.js"),
-      import("prismjs/components/prism-c.js"),
-      import("prismjs/components/prism-diff.js"),
+      import("prismjs/components/prism-toml.js"),
       import("prismjs/components/prism-ini.js"),
       import("prismjs/components/prism-properties.js"),
-      import("prismjs/components/prism-toml.js"),
       import("prismjs/components/prism-groovy.js"),
     ])
-    // cpp는 c 위에 정의되므로 c 다음에 불러온다
-    await import("prismjs/components/prism-cpp.js")
     return m.Code
   })
 )
