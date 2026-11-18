@@ -90,6 +90,11 @@ const StyledWrapper = styled.div`
     width: 100%;
   }
 
+  /* 불렛 간격: 기본 6px 위아래 여백을 노션처럼 좁게 */
+  .notion .notion-list li {
+    padding: 3px 0;
+  }
+
   /* 이모지: Windows 기본 이모지 대신 Noto Color Emoji를 먼저 쓴다 (_document.tsx에서 로드) */
   .notion {
     --notion-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
