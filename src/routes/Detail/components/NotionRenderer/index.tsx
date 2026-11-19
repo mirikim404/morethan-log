@@ -194,6 +194,37 @@ const StyledWrapper = styled.div`
   .notion .notion-code-copy-button:active {
     background: rgba(255, 255, 255, 0.16);
   }
+  /* 복사 버튼: 기본보다 작게 */
+  .notion .notion-code-copy {
+    top: 0.6em;
+    right: 0.6em;
+  }
+  .notion .notion-code-copy-button {
+    font-size: 13px;
+    padding: 6px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+  }
+
+  /* 코드블록 가로 스크롤바: 얇고 어두운 색으로 */
+  .notion pre.notion-code {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  }
+  .notion pre.notion-code::-webkit-scrollbar {
+    height: 6px;
+  }
+  .notion pre.notion-code::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .notion pre.notion-code::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+  }
+  .notion pre.notion-code::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
   /* "Copied" 툴팁: 기본은 버튼 아래(코드블록 밖)에 떠서 스크롤바가 생기므로 버튼 왼쪽에 띄운다 */
   .notion .notion-code-copy-tooltip {
     top: 50%;
