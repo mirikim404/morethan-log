@@ -250,6 +250,14 @@ const StyledWrapper = styled.div`
     opacity: 0.55;
   }
 
+  /* JetBrains Mono 합자(ligature) 끄기: ==, ->, != 가 한 글자처럼 붙어 보이지 않게 */
+  .notion .notion-inline-code,
+  .notion pre.notion-code,
+  .notion pre.notion-code code {
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+  }
+
   /* 인라인 코드: 배경과 색을 진하게 해서 눈에 띄게 */
   .notion .notion-inline-code {
     font-family: "JetBrains Mono", D2Coding, Consolas, "Liberation Mono", Menlo,
